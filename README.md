@@ -8,3 +8,6 @@
 
 ## Authors/Contributors
     Rohit Anantha
+    Chaewon Lee
+    Pawan K Somavarpu
+    Tanya Dhingra
