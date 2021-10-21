@@ -1,3 +1,5 @@
+package Austin_Tech_Dining;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,15 +13,18 @@ import java.util.Scanner;
 
 public class MenuParser {
 
-    private static HashMap<String, ArrayList<String>> locationsAndFood;
+    private HashMap<String, ArrayList<String>> locationsAndFood;
 
     public MenuParser() throws MalformedURLException, IOException {
-        Scanner scanner = new Scanner(new File("Scripts/DiningURLs.txt"));
+        locationsAndFood = new HashMap<>();
+        Scanner scanLocations = new Scanner(new File("Austin_Tech_Dining\\Scripts\\ListOfPlaces.txt"));
+        Scanner scanner = new Scanner(new File("Austin_Tech_Dining\\Scripts\\DiningURLs.txt"));
         String baseURL = scanner.nextLine();
         while (scanner.hasNextLine()) {
-            String overallURL = baseURL + scanner.nextLine();
-            ArrayList<String> currentFoods = getFoodsFromScanner(getScannerFromWeb(overallURL));
-            locationsAndFood.putIfAbsent("LOCATION: ", currentFoods);
+            String secondHalfURL = scanner.nextLine();
+            ArrayList<String> currentFoods = getFoodsFromScanner(getScannerFromWeb(baseURL + secondHalfURL));
+            locationsAndFood.putIfAbsent(scanLocations.nextLine(), currentFoods);
+
         }
     }
 
@@ -32,7 +37,7 @@ public class MenuParser {
      */
     public static void main(String[] args) throws MalformedURLException, IOException {
         MenuParser mParser = new MenuParser();
-        System.out.println(locationsAndFood);
+        System.out.println(mParser.getFoodForLocation("Jester Dining"));
     }
 
     /**
@@ -70,6 +75,21 @@ public class MenuParser {
             }
         }
         return foodObjects;
+    }
+
+    /**
+     * Return a string of the food at a place for example: <br>
+     * Jester Dining <br>
+     * Fresh and Simple Tastes (FAST) Line at J2 Dining <br>
+     * Kins Dining <br>
+     * Cypress Bend Cafe <br>
+     * Jesta's Pizza <br>
+     * 
+     * @param locationString
+     * @return
+     */
+    public ArrayList<String> getFoodForLocation(String locationString) {
+        return locationsAndFood.get(locationString);
     }
 
 }
