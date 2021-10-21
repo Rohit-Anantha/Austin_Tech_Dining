@@ -1,0 +1,24 @@
+## Different Link Formats and Examples
+
+http://hf-food.austin.utexas.edu/foodpro/shortmenu.aspx?sName=University+Housing+and+Dining&locationNum=03&locationName=Kins+Dining&naFlag=1
+
+http://hf-food.austin.utexas.edu/foodpro/shortmenu.aspx?sName=University+Housing+and+Dining&locationNum=
+12&locationName=Jester+Dining%3a+J2+%26+JCL&naFlag=1
+27&locationName=Fresh+and+Simple+Tastes+(FAST)+Line+at+J2+Dining&naFlag=1
+03&locationName=Kins+Dining&naFlag=1
+08&locationName=Cypress+Bend+Cafe+&naFlag=1
+26&locationName=Jesta%27+Pizza&naFlag=1
+
+
+Name=University+Housing+and+Dining
+
+locationNum=
+03 = Kins Dining
+12 = Jester
+05 = Jester City Market
+14 = Kin's Market
+27 = FAST Line at 28J2
+26 = Jesta Pizza
+08 = Cypress Bend
+
+LocationName - irrelavent --> just for text display
