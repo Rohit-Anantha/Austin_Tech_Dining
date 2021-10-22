@@ -1,5 +1,3 @@
-package Austin_Tech_Dining;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

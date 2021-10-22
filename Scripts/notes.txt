@@ -22,3 +22,10 @@ locationNum=
 08 = Cypress Bend
 
 LocationName - irrelavent --> just for text display
+
+
+LONG MENU --> actual nutrition
+
+http://hf-food.austin.utexas.edu/foodpro/longmenu.aspx?sName=University%2bHousing%2band%2bDining&locationNum=12&locationName=Jester%2b2nd%2bFloor%2b(J2)%2bDining&naFlag=1&WeeksMenus=This+Week%27s+Menus&dtdate=10%2f21%2f2021&mealName=Breakfast
+
+http://hf-food.austin.utexas.edu/foodpro/label.aspx?locationNum=12&locationName=Jester%2b2nd%2bFloor%2b(J2)%2bDining&dtdate=10%2f21%2f2021&RecNumAndPort=031001*1%2f2

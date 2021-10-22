@@ -1,12 +1,12 @@
-package Austin_Tech_Dining;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -17,8 +17,8 @@ public class MenuParser {
 
     public MenuParser() throws MalformedURLException, IOException {
         locationsAndFood = new HashMap<>();
-        Scanner scanLocations = new Scanner(new File("Austin_Tech_Dining\\Scripts\\ListOfPlaces.txt"));
-        Scanner scanner = new Scanner(new File("Austin_Tech_Dining\\Scripts\\DiningURLs.txt"));
+        Scanner scanLocations = new Scanner(new File("..\\ListOfPlaces.txt"));
+        Scanner scanner = new Scanner(new File("..\\DiningURLs.txt"));
         String baseURL = scanner.nextLine();
         while (scanner.hasNextLine()) {
             String secondHalfURL = scanner.nextLine();
@@ -37,7 +37,55 @@ public class MenuParser {
      */
     public static void main(String[] args) throws MalformedURLException, IOException {
         MenuParser mParser = new MenuParser();
-        System.out.println(mParser.getFoodForLocation("Jester Dining"));
+
+        if (args.length == 0) {
+
+            /*
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.println("Which Location do you want the list of food from?");
+
+                System.out.println("Jester Dining\n" + "Fresh and Simple Tastes (FAST) Line at J2 Dining\n"
+                        + "Kins Dining\n" + "Cypress Bend Cafe\n" + "Jesta's Pizza");
+                String location = scanner.nextLine();
+                if (location.equals("")) {
+                    break;
+                }
+                System.out.println(mParser.getFoodForLocation(location));
+            }
+            */
+
+            String URL = "http://hf-food.austin.utexas.edu/foodpro/longmenu.aspx?sName=University%2bHousing%2band%2bDining&locationNum=12&locationName=Jester%2b2nd%2bFloor%2b(J2)%2bDining&naFlag=1&WeeksMenus=This+Week%27s+Menus&dtdate=10%2f21%2f2021&mealName=Breakfast";
+            ArrayList<String> urlEndingsOfFoodsFromLongMenu = mParser.getURLEndingsOfFoodsFromLongMenu(URL);
+            for (int i = 0; i < urlEndingsOfFoodsFromLongMenu.size(); i++) {
+                String ending = urlEndingsOfFoodsFromLongMenu.get(i);
+                String beginning = "http://hf-food.austin.utexas.edu/foodpro/";
+                Scanner tempScanner = mParser.getScannerFromWeb(beginning + ending);
+                while (tempScanner.hasNextLine()) {
+                    String line = tempScanner.nextLine();
+                        if(line.contains("labelrecipe"))
+                        {
+                            System.out.println();
+                            System.out.println();
+                            line = line.substring(line.indexOf("labelrecipe") + 13);
+                            line = line.substring(0 , line.indexOf("<"));
+                            System.out.println(line);
+                            System.out.println();
+                            System.out.println();
+                        }
+                        if (line.contains("nutfactstopnutrient")) {
+                            line = line.substring(line.indexOf("nutfactstopnutrient") + 21);
+                            line = line.substring(0, line.indexOf("nbsp"));
+                            System.out.println(line);
+                            System.out.println();
+                        }
+            }
+            }
+
+        } else {
+            System.out.println(mParser.getFoodForLocation(args[0]));
+        }
+
     }
 
     /**
@@ -88,8 +136,29 @@ public class MenuParser {
      * @param locationString
      * @return
      */
-    public ArrayList<String> getFoodForLocation(String locationString) {
-        return locationsAndFood.get(locationString);
+    public String getFoodForLocation(String locationString) {
+        ArrayList<String> foods = locationsAndFood.get(locationString);
+        StringBuilder sBuilder = new StringBuilder();
+        for (String string : foods) {
+            sBuilder.append(string);
+            sBuilder.append("\n");
+        }
+        return sBuilder.toString();
+    }
+
+    public ArrayList<String> getURLEndingsOfFoodsFromLongMenu(String URL) throws MalformedURLException, IOException {
+
+        Scanner scan = getScannerFromWeb(URL);
+        ArrayList<String> URLEndings = new ArrayList<>();
+        while (scan.hasNextLine()) {
+            String currentLine = scan.nextLine();
+            if (currentLine.contains("longmenucoldispname")) {
+                currentLine = currentLine.substring(currentLine.indexOf("a href=") + 8);
+                currentLine = currentLine.substring(0, currentLine.indexOf("'"));
+                URLEndings.add(currentLine);
+            }
+        }
+        return URLEndings;
     }
 
 }
