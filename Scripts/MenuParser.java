@@ -14,7 +14,8 @@ public class MenuParser {
         String baseURL = diningURLs.nextLine();
         while (diningURLs.hasNextLine()) {
             String secondHalfURL = diningURLs.nextLine();
-            ArrayList<String> currentFoods = getFoodsFromScanner(getScannerFromWeb(baseURL + secondHalfURL));
+            ArrayList<String> currentFoods =
+                    getFoodsFromScanner(getScannerFromWeb(baseURL + secondHalfURL));
             locationsAndFood.putIfAbsent(listOfPlaces.nextLine(), currentFoods);
         }
         Scanner longMenus = new Scanner(new File("LongMenuURLs.txt"));
@@ -77,26 +78,27 @@ public class MenuParser {
     // prompt user for input
     private static String askUserForLocation(Scanner scanner) {
         System.out.println("Which Location do you want the list of food from?");
-        System.out.println("1. Jester Dining\n" + "2. Fresh and Simple Tastes (FAST) Line at J2 Dining\n"
-                + "3. Kins Dining\n" + "4. Cypress Bend Cafe\n" + "5. Jesta's Pizza");
+        System.out.println(
+                "1. Jester Dining\n" + "2. Fresh and Simple Tastes (FAST) Line at J2 Dining\n"
+                        + "3. Kins Dining\n" + "4. Cypress Bend Cafe\n" + "5. Jesta's Pizza");
         System.out.println("Type 0 to exit");
         int location = scanner.nextInt();
         switch (location) {
-        case 0:
-            return "";
-        case 1:
-            return ("Jester Dining");
-        case 2:
-            return ("Fresh and Simple Tastes (FAST) Line at J2 Dining");
-        case 3:
-            return ("Kins Dining");
-        case 4:
-            return ("Cypress Bend Cafe");
-        case 5:
-            return ("Jesta's Pizza");
-        default:
-            System.out.println("Invalid Location");
-            return ("Invalid Location");
+            case 0:
+                return "";
+            case 1:
+                return ("Jester Dining");
+            case 2:
+                return ("Fresh and Simple Tastes (FAST) Line at J2 Dining");
+            case 3:
+                return ("Kins Dining");
+            case 4:
+                return ("Cypress Bend Cafe");
+            case 5:
+                return ("Jesta's Pizza");
+            default:
+                System.out.println("Invalid Location");
+                return ("Invalid Location");
         }
     }
 
@@ -104,12 +106,13 @@ public class MenuParser {
      * Create a list of all the nutritional values relating to all the foods
      * 
      * @param URL - the url to find the nutrional values on --> in the longmenu.aspx
-     * @return - a hashmap that corresponds String names of food to a HashMap of
-     *         nutritionalValues and their String values.
+     * @return - a hashmap that corresponds String names of food to a HashMap of nutritionalValues
+     *         and their String values.
      * @throws MalformedURLException
      * @throws IOException
      */
-    public HashMap<String, HashMap<String, String>> getNutritionalValuesForAllFoods(String URL) throws IOException {
+    public HashMap<String, HashMap<String, String>> getNutritionalValuesForAllFoods(String URL)
+            throws IOException {
         ArrayList<String> urlEndingsOfFoodsFromLongMenu = getURLEndingsOfFoodsFromLongMenu(URL);
         HashMap<String, HashMap<String, String>> overallHashMap = new HashMap<>();
         for (int i = 0; i < urlEndingsOfFoodsFromLongMenu.size(); i++) {
@@ -175,7 +178,8 @@ public class MenuParser {
             String line = scanner.nextLine();
             if (line.contains("shortmenurecipes")) {
 
-                foodObjects.add(line.substring(SHORT_MENU_RECIPIES_START, line.indexOf(AND_SYMBOL)));
+                foodObjects
+                        .add(line.substring(SHORT_MENU_RECIPIES_START, line.indexOf(AND_SYMBOL)));
             }
         }
         return foodObjects;
@@ -226,8 +230,8 @@ public class MenuParser {
     }
 
     public enum DINING_LOCATIONS {
-        KINS_DINING("03"), JESTER_DINING("12"), JESTER_CITY_MARKET("05"), KINS_MARKET("14"), FAST_LINE_AT_J2("27"),
-        JESTA_PIZZA("26"), CYPRESS_BEND("08");
+        KINS_DINING("03"), JESTER_DINING("12"), JESTER_CITY_MARKET("05"), KINS_MARKET(
+                "14"), FAST_LINE_AT_J2("27"), JESTA_PIZZA("26"), CYPRESS_BEND("08");
 
         public final String URLNumber;
 
