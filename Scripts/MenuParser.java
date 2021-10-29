@@ -18,21 +18,7 @@ public class MenuParser {
                     getFoodsFromScanner(getScannerFromWeb(baseURL + secondHalfURL));
             locationsAndFood.putIfAbsent(listOfPlaces.nextLine(), currentFoods);
         }
-        Scanner longMenus = new Scanner(new File("LongMenuURLs.txt"));
         nutritionAndFood = new HashMap<>();
-        // while (longMenus.hasNextLine()) {
-        // nutritionAndFood.putAll(getNutritionalValuesForAllFoods(longMenus.nextLine()));
-        // }
-    }
-
-    private void generateCurrentLongMenuURLs() {
-        // get the date and the different locations and generate all the different long
-        // menu urls
-        GregorianCalendar currentDate = new GregorianCalendar();
-        System.out.println(currentDate.getTime());
-        System.out.println(currentDate.get(Calendar.DAY_OF_MONTH));
-        System.out.println(currentDate.get(Calendar.MONTH) + 1);
-        System.out.println(currentDate.get(Calendar.YEAR));
     }
 
     /**
@@ -45,28 +31,35 @@ public class MenuParser {
     public static void main(String[] args) throws IOException {
         MenuParser mParser = new MenuParser();
 
-        // if (args.length == 0) {
+        if (args.length == 0) {
 
-        // Scanner scanner = new Scanner(System.in);
-        // boolean done = false;
-        // String currentLocation = "";
-        // while (!done) {
-        // // set current location
-        // currentLocation = askUserForLocation(scanner);
-        // if (currentLocation.equals("")) {
-        // done = true;
-        // } else if (currentLocation.equals("Invalid Location")) {
-        // System.out.println("Must be between 0 - 5");
-        // } else {
-        // mParser.getMenuOptions(currentLocation);
-        // }
-        // }
-        // scanner.close();
-        // }
-        mParser.generateCurrentLongMenuURLs();
-
+            Scanner scanner = new Scanner(System.in);
+            boolean done = false;
+            String currentLocation = "";
+            while (!done) {
+                // set current location
+                currentLocation = askUserForLocation(scanner);
+                if (currentLocation.equals("")) {
+                    done = true;
+                } else if (currentLocation.equals("Invalid Location")) {
+                    System.out.println("Must be between 0 - 5");
+                } else {
+                    mParser.getMenuOptions(currentLocation);
+                }
+            }
+            scanner.close();
+        } else {
+            mParser.getMenuOptions(args[0]);
+        }
     }
 
+
+    /**
+     * Gets the menu options for the given location.
+     * 
+     * @param location
+     * @return
+     */
     private void getMenuOptions(String currentLocation) {
         ArrayList<String> foods = locationsAndFood.get(currentLocation);
         for (String string : foods) {
@@ -75,7 +68,12 @@ public class MenuParser {
         }
     }
 
-    // prompt user for input
+    /**
+     * Ask a user for which location they want.
+     * 
+     * @param scanner
+     * @return
+     */
     private static String askUserForLocation(Scanner scanner) {
         System.out.println("Which Location do you want the list of food from?");
         System.out.println(
@@ -103,7 +101,7 @@ public class MenuParser {
     }
 
     /**
-     * Create a list of all the nutritional values relating to all the foods
+     * Create a list of all the nutritional values relating to all the foods from a longmenu.aspx
      * 
      * @param URL - the url to find the nutrional values on --> in the longmenu.aspx
      * @return - a hashmap that corresponds String names of food to a HashMap of nutritionalValues

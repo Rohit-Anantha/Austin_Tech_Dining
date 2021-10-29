@@ -1,10 +1,11 @@
-### Information file for Menu Parser
+### Information file for Menu Parser and Dining URL
 ## Author: Rohit Anantha
-## Version: 1.0
+## Version: 1.1
 
 ## Current Capabilities:
 
-can get the plain list of food from a certain place
+MenuParser - multifunctional
+DiningURL - creates a new URL based on a long menu.aspx based on location, updates to the daily.
 
 ## TODO
 
