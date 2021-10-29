@@ -1,0 +1,11 @@
+{
+  "java.checkstyle.configuration": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "editor.formatOnSave": true,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "html.format.indentHandlebars": true
+}

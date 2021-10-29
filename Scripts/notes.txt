@@ -17,7 +17,7 @@ locationNum=
 12 = Jester
 05 = Jester City Market
 14 = Kin's Market
-27 = FAST Line at 28J2
+27 = FAST Line at J2
 26 = Jesta Pizza
 08 = Cypress Bend
 
