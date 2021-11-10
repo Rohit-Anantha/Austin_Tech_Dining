@@ -4,10 +4,12 @@
     Create an app that helps the format and layout of the current UT dining halls
 
 ## Current State
-    A blank REACT project :)
+    Lots of stuff -->
+       Frontend --> React Native HTML CSS
+       
+       Backend --> Firebase Firestore Java
 
 ## Authors/Contributors
     Rohit Anantha
-    Chaewon Lee
     Pawan K Somavarpu
     Tanya Dhingra
