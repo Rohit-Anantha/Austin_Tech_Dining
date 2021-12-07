@@ -1,0 +1,29 @@
+
+export const csData = [
+    {
+        id: "flatListItem1",
+        title: "JESTER JAVA",
+        image: require('../images/J2DiningImage.jpg'),
+        onpress: 'Test',
+    },
+    {
+        id: "diningHall2",
+        title: "Kins Coffee",
+        image: require('../images/J2DiningImage.jpg'),
+        onpress: 'Test2',
+    },
+    {
+        id: "diningHall3",
+        title: "Longhorn Coffee",
+        image: require('../images/KinsDiningImage.jpg'),
+        onpress: 'KinsDining',
+    },
+    {
+        id: "diningHall4",
+        title: "Union Coffee House",
+        image: require('../images/KinsDiningImage.jpg'),
+        onpress: 'KinsDining',
+    }
+]
+
+export default csData;
